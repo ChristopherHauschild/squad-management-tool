@@ -1,4 +1,8 @@
 const theme = {
+  grid: {
+    container: '1280px',
+    headerHt: '50px',
+  },
   border: {
     radius: '4px',
     color: '#BDBDBD',
@@ -27,6 +31,7 @@ const theme = {
     gray: '#E8E3E9',
   },
   spacings: {
+    xxxsmall: '4px',
     xxsmall: '8px',
     xsmall: '16px',
     small: '24px',
@@ -34,6 +39,20 @@ const theme = {
     large: '40px',
     xlarge: '48px',
     xxlarge: '56px',
+  },
+  sizes: {
+    xxxsmall: '4px',
+    xxsmall: '8px',
+    xsmall: '16px',
+    small: '24px',
+    medium: '32px',
+    large: '40px',
+    xlarge: '48px',
+    xxlarge: '56px',
+  },
+  custom: {
+    headerBg: 'linear-gradient(to right, #B63A55, #913E81)',
+    headerMaxSize: 'calc(50px - 16px)',
   },
 };
 
