@@ -2,6 +2,7 @@ const theme = {
   grid: {
     container: '1280px',
     headerHt: '50px',
+    footerHt: '40px',
   },
   border: {
     radius: '4px',
