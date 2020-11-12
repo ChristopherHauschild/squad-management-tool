@@ -6,7 +6,7 @@ const theme = {
   },
   border: {
     radius: '8px',
-    color: '#BDBDBD',
+    color: '#DEDEDE',
   },
   font: {
     family:

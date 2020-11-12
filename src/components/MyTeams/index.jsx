@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Table } from 'antd';
 import { FaPlus as PlusIcon } from 'react-icons/fa';
+import { Table } from 'antd';
 
-import Card from 'components/Card';
 import Button from 'components/Button';
 
-import { Header } from './styles';
+import Card from 'components/Card';
 
 const MyTeams = ({ data, loading }) => {
   const columns = [
@@ -30,18 +29,17 @@ const MyTeams = ({ data, loading }) => {
     },
   ];
 
+  const addButton = useMemo(
+    () => (
+      <Button onClick={() => '!'}>
+        <PlusIcon />
+      </Button>
+    ),
+    []
+  );
+
   return (
-    <Card>
-      <Header>
-        <h1>My teams</h1>
-
-        <Button>
-          <PlusIcon />
-        </Button>
-      </Header>
-
-      <Divider />
-
+    <Card title="My teams" button={addButton}>
       <Table
         dataSource={data}
         columns={columns}
