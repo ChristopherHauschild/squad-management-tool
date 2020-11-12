@@ -30,6 +30,7 @@ const theme = {
     mainBg: '#F7F3F7',
     white: '#FAFAFA',
     black: '#090223',
+    lightGray: '#BCBCBC',
     gray: '#E8E3E9',
   },
   spacings: {
