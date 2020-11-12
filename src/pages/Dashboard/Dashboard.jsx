@@ -12,12 +12,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      setLoadingMyTeams(true);
+      try {
+        setLoadingMyTeams(true);
 
-      const response = await api.get('/teams');
+        const response = await api.get('/teams');
 
-      setLoadingMyTeams(false);
-      setMyTeams(response.data);
+        setLoadingMyTeams(false);
+        setMyTeams(response.data);
+      } catch (error) {
+        setLoadingMyTeams(false);
+      }
     };
 
     loadData();

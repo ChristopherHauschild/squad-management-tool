@@ -20,13 +20,13 @@ const MyTeams = ({ data, loading }) => {
       sorter: (a, b) => a.name > b.name,
     },
     {
-      title: 'Venue Address',
-      dataIndex: 'venue_address',
-      key: 'venue_address',
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
       ellipsis: true,
       width: '60%',
       defaultSortOrder: 'descend',
-      sorter: (a, b) => a.venue_address > b.venue_address,
+      sorter: (a, b) => a.description > b.description,
     },
   ];
 
