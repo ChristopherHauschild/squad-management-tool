@@ -14,10 +14,10 @@ const Dashboard = () => {
     const loadData = async () => {
       setLoadingMyTeams(true);
 
-      const { data } = await api.get('/teams/league/2');
+      const response = await api.get('/teams');
 
       setLoadingMyTeams(false);
-      setMyTeams(data.api.teams);
+      setMyTeams(response.data);
     };
 
     loadData();

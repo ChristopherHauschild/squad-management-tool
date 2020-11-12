@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   display: flex;
-  height: auto;
+  height: 100%;
   padding: 0px ${({ theme }) => theme.spacings.small};
   width: 100%;
 
