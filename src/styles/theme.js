@@ -5,7 +5,7 @@ const theme = {
     footerHt: '40px',
   },
   border: {
-    radius: '4px',
+    radius: '8px',
     color: '#BDBDBD',
   },
   font: {
@@ -13,7 +13,7 @@ const theme = {
       "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
-    bold: 600,
+    bold: 500,
     sizes: {
       xsmall: '12px',
       small: '14px',
@@ -26,6 +26,7 @@ const theme = {
   colors: {
     primary: '#B63A55',
     secondary: '#913E81',
+    third: '#1890FF',
     mainBg: '#F7F3F7',
     white: '#FAFAFA',
     black: '#090223',
@@ -54,6 +55,8 @@ const theme = {
   custom: {
     headerBg: 'linear-gradient(to right, #B63A55, #913E81)',
     headerMaxSize: 'calc(50px - 16px)',
+    buttonBg: 'linear-gradient(#B63A55, #913E81)',
+    buttonPdd: '12px',
   },
 };
 

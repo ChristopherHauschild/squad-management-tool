@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   height: ${({ theme }) => theme.grid.footerHt};
   width: 100%;
+  padding: ${({ theme }) => theme.spacings.small};
 
   span {
     text-align: center;
