@@ -11,7 +11,7 @@ export const Container = styled.header`
   padding: 0px ${({ theme }) => theme.spacings.small};
   width: 100%;
 
-  ${media.lessThan('520px')`
+  ${media.lessThan('576px')`
     height: auto;
   `}
 `;
@@ -38,7 +38,7 @@ export const Logo = styled.div`
     max-height: ${({ theme }) => theme.custom.headerMaxSize};
   }
 
-  ${media.lessThan('520px')`
+  ${media.lessThan('576px')`
     flex-direction: column;
     margin: 0px auto;
 
@@ -61,7 +61,7 @@ export const Title = styled.div`
     text-align: center;
   }
 
-  ${media.lessThan('520px')`
+  ${media.lessThan('576px')`
     h1 {
       font-size: ${({ theme }) => theme.font.sizes.large};
     }
@@ -76,7 +76,7 @@ export const UserDropdown = styled(Dropdown)`
   margin-left: ${({ theme }) => theme.spacings.xxsmall};
   padding-left: ${({ theme }) => theme.spacings.xxsmall};
 
-  ${media.greaterThan('520px')`
+  ${media.greaterThan('576px')`
     display: none;
   `}
 `;

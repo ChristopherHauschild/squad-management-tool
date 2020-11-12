@@ -24,10 +24,11 @@ export const Container = styled.div`
 
     strong {
       font-size: ${({ theme }) => theme.font.sizes.large};
+      font-weight: ${({ theme }) => theme.font.bold};
     }
   }
 
-  ${media.lessThan('520px')`
+  ${media.lessThan('576px')`
     display: ${(props) => (props.customHeader ? 'none' : 'flex')};
   `}
 `;

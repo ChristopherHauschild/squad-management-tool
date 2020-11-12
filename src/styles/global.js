@@ -34,5 +34,13 @@ export default createGlobalStyle`
     h6 {
       margin: 0px;
     }
+
+    // reset antd properties
+    .ant-table-column-sorters {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      white-space: normal;
+    }
   `}
 `;
