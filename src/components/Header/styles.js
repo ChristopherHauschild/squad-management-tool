@@ -1,18 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
 import { Dropdown } from 'antd';
 import { FaUserAlt } from 'react-icons/fa';
 
 export const Container = styled.header`
-  background: ${({ theme }) => theme.custom.headerBg};
-  display: flex;
-  height: ${({ theme }) => theme.grid.headerHt};
-  padding: 0px ${({ theme }) => theme.spacings.small};
-  width: 100%;
+  ${({ theme }) => css`
+    background: ${theme.custom.headerBg};
+    display: flex;
+    height: ${theme.grid.headerHt};
+    padding: 0px ${theme.spacings.small};
+    width: 100%;
 
-  ${media.lessThan('576px')`
-    height: auto;
+    ${media.lessThan('576px')`
+      height: auto;
+    `}
   `}
 `;
 
@@ -27,62 +29,70 @@ export const HeaderContent = styled.div`
 `;
 
 export const Logo = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-
-  img {
+  ${({ theme }) => css`
+    align-items: center;
     display: flex;
-    height: 100%;
-    margin-right: ${({ theme }) => theme.spacings.xsmall};
-    max-height: ${({ theme }) => theme.custom.headerMaxSize};
-  }
-
-  ${media.lessThan('576px')`
-    flex-direction: column;
-    margin: 0px auto;
+    justify-content: center;
 
     img {
-      margin-right: 0px;
-      margin-bottom: ${({ theme }) => theme.spacings.xxxsmall};
+      display: flex;
+      height: 100%;
+      margin-right: ${theme.spacings.xsmall};
+      max-height: ${theme.custom.headerMaxSize};
     }
+
+    ${media.lessThan('576px')`
+      flex-direction: column;
+      margin: 0px auto;
+
+      img {
+        margin-right: 0px;
+        margin-bottom: ${theme.spacings.xxxsmall};
+      }
+    `}
   `}
 `;
 
 export const Title = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  ${({ theme }) => css`
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
-  h1 {
-    color: ${({ theme }) => theme.colors.white};
-    font-size: ${({ theme }) => theme.font.sizes.xlarge};
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  ${media.lessThan('576px')`
     h1 {
-      font-size: ${({ theme }) => theme.font.sizes.large};
+      color: ${theme.colors.white};
+      font-size: ${theme.font.sizes.xlarge};
+      line-height: 1.2;
+      text-align: center;
     }
+
+    ${media.lessThan('576px')`
+      h1 {
+        font-size: ${theme.font.sizes.large};
+      }
+    `}
   `}
 `;
 
 export const UserDropdown = styled(Dropdown)`
-  align-items: center;
-  border-left: 1px solid ${({ theme }) => theme.border.color};
-  display: flex;
-  justify-content: center;
-  margin-left: ${({ theme }) => theme.spacings.xxsmall};
-  padding-left: ${({ theme }) => theme.spacings.xxsmall};
+  ${({ theme }) => css`
+    align-items: center;
+    border-left: 1px solid ${theme.border.color};
+    display: flex;
+    justify-content: center;
+    margin-left: ${theme.spacings.xxsmall};
+    padding-left: ${theme.spacings.xxsmall};
 
-  ${media.greaterThan('576px')`
-    display: none;
+    ${media.greaterThan('576px')`
+      display: none;
+    `}
   `}
 `;
 
 export const UserIcon = styled(FaUserAlt)`
-  color: ${({ theme }) => theme.colors.white};
-  height: ${({ theme }) => theme.sizes.small};
-  width: ${({ theme }) => theme.sizes.small};
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    height: ${theme.sizes.small};
+    width: ${theme.sizes.small};
+  `}
 `;
