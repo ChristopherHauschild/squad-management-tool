@@ -4,6 +4,7 @@ import { Col, Row } from 'antd';
 
 import MyTeams from 'components/MyTeams';
 import Top5 from 'components/Top5';
+import HighlightsPlayers from 'components/HighlightsPlayers';
 
 const DashboardPage = ({ myTeams, loadingMyTeams }) => {
   return (
@@ -12,7 +13,14 @@ const DashboardPage = ({ myTeams, loadingMyTeams }) => {
         <MyTeams data={myTeams} loading={loadingMyTeams} />
       </Col>
       <Col xs={24} sm={24} md={12}>
-        <Top5 />
+        <Row gutter={[0, 24]}>
+          <Col span={24}>
+            <Top5 />
+          </Col>
+          <Col span={24}>
+            <HighlightsPlayers />
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

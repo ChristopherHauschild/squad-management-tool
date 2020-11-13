@@ -21,6 +21,7 @@ const theme = {
       large: '18px',
       xlarge: '20px',
       xxlarge: '28px',
+      xxxlarge: '36px',
     },
   },
   colors: {
@@ -30,8 +31,9 @@ const theme = {
     mainBg: '#F7F3F7',
     white: '#FAFAFA',
     black: '#090223',
-    lightGray: '#BCBCBC',
     gray: '#E8E3E9',
+    lightGray: '#BCBCBC',
+    translucidGray: '#CECBCB73',
   },
   spacings: {
     xxxsmall: '4px',
@@ -56,8 +58,8 @@ const theme = {
   custom: {
     headerBg: 'linear-gradient(to right, #B63A55, #913E81)',
     headerMaxSize: 'calc(50px - 16px)',
-    buttonBg: 'linear-gradient(#B63A55, #913E81)',
     buttonPdd: '12px',
+    gradientBg: 'linear-gradient(#B63A55, #913E81)',
   },
 };
 

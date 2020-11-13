@@ -19,13 +19,15 @@ export const Container = styled.header`
 `;
 
 export const HeaderContent = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 0px auto;
-  max-width: ${({ theme }) => theme.grid.container};
-  padding: ${({ theme }) => theme.spacings.xxsmall} 0px;
-  width: 100%;
+  ${({ theme }) => css`
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto;
+    max-width: ${theme.grid.container};
+    padding: ${theme.spacings.xxsmall} 0px;
+    width: 100%;
+  `}
 `;
 
 export const Logo = styled.div`
