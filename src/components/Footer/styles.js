@@ -1,15 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  align-items: center;
-  background: ${({ theme }) => theme.colors.gray};
-  display: flex;
-  justify-content: center;
-  height: ${({ theme }) => theme.grid.footerHt};
-  width: 100%;
-  padding: ${({ theme }) => theme.spacings.small};
+  ${({ theme }) => css`
+    align-items: center;
+    background: ${theme.colors.gray};
+    display: flex;
+    justify-content: center;
+    height: ${theme.grid.footerHt};
+    width: 100%;
+    padding: ${theme.spacings.small};
 
-  span {
-    text-align: center;
-  }
+    span {
+      text-align: center;
+    }
+  `}
 `;
