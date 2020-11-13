@@ -41,8 +41,10 @@ export const Header = styled.header`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
 
-  padding: 0px ${({ theme }) => theme.spacings.small};
+    padding: 0px ${theme.spacings.small};
+  `}
 `;

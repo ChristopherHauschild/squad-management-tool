@@ -4,13 +4,15 @@ import { Row, Col } from 'antd';
 export const Container = styled(Row)``;
 
 export const Column = styled(Col)`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
 
-  h2 {
-    font-size: ${({ theme }) => theme.font.sizes.large};
-    font-weight: ${({ theme }) => theme.font.bold};
-  }
+    h2 {
+      font-size: ${theme.font.sizes.large};
+      font-weight: ${theme.font.bold};
+    }
+  `}
 `;
 
 export const List = styled.div`
@@ -43,10 +45,12 @@ export const ListItem = styled.div`
 `;
 
 export const NoData = styled(ListItem)`
-  justify-content: center;
+  ${({ theme }) => css`
+    justify-content: center;
 
-  span {
-    text-align: center;
-    color: ${({ theme }) => theme.colors.lightGray};
-  }
+    span {
+      color: ${theme.colors.lightGray};
+      text-align: center;
+    }
+  `}
 `;
