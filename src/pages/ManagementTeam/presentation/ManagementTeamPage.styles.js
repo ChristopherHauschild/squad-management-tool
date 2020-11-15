@@ -29,6 +29,10 @@ export const Column = styled(Col)`
         font-weight: ${theme.font.bold};
       }
 
+      .ant-form-item-label > label::before {
+        display: none !important;
+      }
+
       .ant-input {
         border-radius: ${theme.border.radius.small};
       }

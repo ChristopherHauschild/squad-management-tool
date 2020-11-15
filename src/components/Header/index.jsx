@@ -4,6 +4,7 @@ import { Menu } from 'antd';
 import User from 'components/User';
 import logoImg from 'assets/images/logo.svg';
 
+import { Link } from 'react-router-dom';
 import { Container, HeaderContent, Logo, Title, UserDropdown, UserIcon } from './styles';
 
 const Header = () => {
@@ -21,17 +22,19 @@ const Header = () => {
   return (
     <Container>
       <HeaderContent>
-        <Logo>
-          <img src={logoImg} alt="Logo Venturus" />
+        <Link to="/dashboard">
+          <Logo>
+            <img src={logoImg} alt="Logo Venturus" />
 
-          <Title>
-            <h1>Squad Management Tool</h1>
+            <Title>
+              <h1>Squad Management Tool</h1>
 
-            <UserDropdown placement="bottomCenter" trigger="click" overlay={UserMenu}>
-              <UserIcon />
-            </UserDropdown>
-          </Title>
-        </Logo>
+              <UserDropdown placement="bottomCenter" trigger="click" overlay={UserMenu}>
+                <UserIcon />
+              </UserDropdown>
+            </Title>
+          </Logo>
+        </Link>
 
         <User customHeader />
       </HeaderContent>

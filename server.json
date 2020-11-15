@@ -77,5 +77,19 @@
       "age": 28,
       "nationality": "England"
     }
-]
+  ],
+  "teams": [
+    {
+      "id": "6b089eb5-8c1a-437d-9ddf-8d2e8ac8adff",
+      "name": "Custom PF",
+      "description": "A time passionate for football",
+      "website": "https://ant.design/components/form/",
+      "type": "fantasy",
+      "tags": [
+        "real",
+        "fantasy"
+      ],
+      "formation": "3-4-3"
+    }
+  ]
 }

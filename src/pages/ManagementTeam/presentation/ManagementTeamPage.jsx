@@ -2,7 +2,10 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+
 import { Form, Input, Row, Col, Radio, Select } from 'antd';
+
+import { useTeams } from 'hooks/teams';
 
 import Card from 'components/Card';
 import TeamSquad from 'components/TeamSquad';
@@ -20,6 +23,7 @@ const { Option } = Select;
 
 const ManagementTeamPage = ({ players, loadingPlayers, search, onSearchChange }) => {
   const [form] = Form.useForm();
+  const { createTeam } = useTeams();
 
   const handleChangeSearch = useCallback(
     _.debounce((event) => {
@@ -28,17 +32,35 @@ const ManagementTeamPage = ({ players, loadingPlayers, search, onSearchChange })
     []
   );
 
+  const onSubmit = useCallback(
+    (payload) => {
+      createTeam(payload);
+    },
+    [createTeam]
+  );
+
   return (
     <Row>
       <Col span={24}>
         <Card title="Create team">
           <Container>
-            <Form form={form} layout="vertical">
+            <Form
+              form={form}
+              layout="vertical"
+              validateTrigger="finish"
+              onFinish={onSubmit}
+            >
               <h3>TEAM INFORMATION</h3>
 
               <Row gutter={64}>
                 <Column xs={24} sm={24} md={12}>
-                  <Form.Item name="name" label="Team name">
+                  <Form.Item
+                    name="name"
+                    label="Team name"
+                    rules={[
+                      { required: true, message: 'Please enter a name for the team.' },
+                    ]}
+                  >
                     <Input />
                   </Form.Item>
                   <Form.Item name="description" label="Description">
@@ -47,7 +69,11 @@ const ManagementTeamPage = ({ players, loadingPlayers, search, onSearchChange })
                 </Column>
 
                 <Column xs={24} sm={24} md={12}>
-                  <Form.Item name="website" label="Team website">
+                  <Form.Item
+                    name="website"
+                    label="Team website"
+                    rules={[{ type: 'url', message: 'Please enter a valid url.' }]}
+                  >
                     <Input />
                   </Form.Item>
                   <Form.Item name="type" label="Team Type">
