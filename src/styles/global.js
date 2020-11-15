@@ -1,10 +1,11 @@
 import { createGlobalStyle, css } from 'styled-components';
+import media from 'styled-media-query';
 
 export default createGlobalStyle`
   * {
     box-sizing: border-box;
-    margin: 0;
-    outline: 0;
+    margin: 0px;
+    outline: 0px;
     padding: 0%;
   }
 
@@ -46,6 +47,23 @@ export default createGlobalStyle`
       justify-content: space-between;
       width: 100%;
       white-space: normal;
+    }
+
+    .ant-form {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      padding: 0px ${theme.spacings.xxxlarge};
+      width: 100%;
+
+      ${media.lessThan('576px')`
+        padding: 0px ${theme.spacings.xxxsmall};
+      `}
+
+      .ant-row {
+        margin: 0px;
+        width: 100%;
+      }
     }
   `}
 `;

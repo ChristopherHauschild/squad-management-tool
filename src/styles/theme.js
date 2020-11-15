@@ -5,7 +5,10 @@ const theme = {
     footerHt: '40px',
   },
   border: {
-    radius: '8px',
+    radius: {
+      small: '4px',
+      medium: '8px',
+    },
     color: '#DEDEDE',
   },
   font: {
@@ -32,6 +35,7 @@ const theme = {
     white: '#FAFAFA',
     black: '#090223',
     gray: '#E8E3E9',
+    darkGray: '#696969',
     lightGray: '#BCBCBC',
     translucidGray: '#CECBCB73',
   },
@@ -44,6 +48,7 @@ const theme = {
     large: '40px',
     xlarge: '48px',
     xxlarge: '56px',
+    xxxlarge: '64px',
   },
   sizes: {
     xxxsmall: '4px',
@@ -60,6 +65,7 @@ const theme = {
     headerMaxSize: 'calc(50px - 16px)',
     buttonPdd: '12px',
     gradientBg: 'linear-gradient(#B63A55, #913E81)',
+    plyrBg: 'linear-gradient(#FAFAFA, #ECECEC)',
   },
 };
 

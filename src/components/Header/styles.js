@@ -25,7 +25,7 @@ export const HeaderContent = styled.div`
     justify-content: space-between;
     margin: 0px auto;
     max-width: ${theme.grid.container};
-    padding: ${theme.spacings.xxsmall} 0px;
+    padding: ${theme.spacings.xxsmall} 0;
     width: 100%;
   `}
 `;
@@ -48,7 +48,7 @@ export const Logo = styled.div`
       margin: 0px auto;
 
       img {
-        margin-right: 0px;
+        margin-right: 0;
         margin-bottom: ${theme.spacings.xxxsmall};
       }
     `}

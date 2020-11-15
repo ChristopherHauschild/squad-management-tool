@@ -18,7 +18,7 @@ export const Column = styled(Col)`
 export const List = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.mainBg};
-    border-radius: ${theme.border.radius};
+    border-radius: ${theme.border.radius.medium};
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -32,7 +32,7 @@ export const ListItem = styled.div`
   ${({ theme }) => css`
     align-items: center;
     background: #ffffff;
-    border-radius: ${theme.border.radius};
+    border-radius: ${theme.border.radius.medium};
     display: flex;
     justify-content: space-between;
     padding: ${theme.spacings.xsmall};

@@ -21,7 +21,7 @@ export const Main = styled.main`
       height: 100%;
       margin: 0px auto;
       max-width: ${theme.grid.container};
-      padding: ${theme.spacings.medium} 0px;
+      padding: ${theme.spacings.medium} 0;
       width: 100%;
     }
   `}

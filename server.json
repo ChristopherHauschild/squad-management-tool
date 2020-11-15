@@ -1,181 +1,81 @@
 {
   "players": [
     {
-      "player_id": 893,
-      "player_name": "Luis Antonio Valencia Mosquera",
+      "id": 893,
+      "name": "Luis Antonio Valencia Mosquera",
       "position": "Midfielder",
       "age": 35,
       "nationality": "Ecuador"
     },
     {
-      "player_id": 895,
-      "player_name": "J. Garner",
+      "id": 895,
+      "name": "J. Garner",
       "position": "Midfielder",
       "age": 19,
       "nationality": "England"
     },
     {
-      "player_id": 8522,
-      "player_name": "Joel Castro",
+      "id": 8522,
+      "name": "Joel Castro",
       "position": "Goalkeeper",
       "age": 24,
       "nationality": "Portugal"
     },
     {
-      "player_id": 886,
-      "player_name": "Diogo Dalot",
+      "id": 886,
+      "name": "Diogo Dalot",
       "position": "Defender",
       "age": 21,
       "nationality": "Portugal"
     },
     {
-      "player_id": 892,
-      "player_name": "C. Smalling",
+      "id": 892,
+      "name": "C. Smalling",
       "position": "Defender",
       "age": 31,
       "nationality": "England"
     },
     {
-      "player_id": 894,
-      "player_name": "A. Young",
+      "id": 894,
+      "name": "A. Young",
       "position": "Defender",
       "age": 35,
       "nationality": "England"
     },
     {
-      "player_id": 899,
-      "player_name": "Andreas Pereira",
+      "id": 899,
+      "name": "Andreas Pereira",
       "position": "Midfielder",
       "age": 24,
       "nationality": "Brazil"
     },
     {
-      "player_id": 898,
-      "player_name": "Ander Herrera",
+      "id": 898,
+      "name": "Ander Herrera",
       "position": "Midfielder",
       "age": 31,
       "nationality": "Spain"
     },
     {
-      "player_id": 883,
-      "player_name": "L. Grant",
+      "id": 883,
+      "name": "L. Grant",
       "position": "Goalkeeper",
       "age": 37,
       "nationality": "England"
     },
     {
-      "player_id": 884,
-      "player_name": "S. Romero",
+      "id": 884,
+      "name": "S. Romero",
       "position": "Goalkeeper",
       "age": 33,
       "nationality": "Argentina"
     },
     {
-      "player_id": 888,
-      "player_name": "P. Jones",
+      "id": 888,
+      "name": "P. Jones",
       "position": "Defender",
       "age": 28,
       "nationality": "England"
-    },
-    {
-      "player_id": 890,
-      "player_name": "M. Rojo",
-      "position": "Defender",
-      "age": 30,
-      "nationality": "Argentina"
-    },
-    {
-      "player_id": 891,
-      "player_name": "L. Shaw",
-      "position": "Defender",
-      "age": 25,
-      "nationality": "England"
-    },
-    {
-      "player_id": 18846,
-      "player_name": "Aaron Wan-Bissaka",
-      "position": "Defender",
-      "age": 23,
-      "nationality": "England"
-    },
-    {
-      "player_id": 19182,
-      "player_name": "Axel Tuanzebe",
-      "position": "Defender",
-      "age": 23,
-      "nationality": "England"
-    },
-    {
-      "player_id": 901,
-      "player_name": "Mata",
-      "position": "Midfielder",
-      "age": 32,
-      "nationality": "Spain"
-    },
-    {
-      "player_id": 900,
-      "player_name": "J. Lingard",
-
-      "position": "Midfielder",
-      "age": 28,
-
-      "nationality": "England"
-    },
-    {
-      "player_id": 905,
-      "player_name": "Fred",
-      "position": "Midfielder",
-      "age": 27,
-      "nationality": "Brazil"
-    },
-    {
-      "player_id": 902,
-      "player_name": "N. Matić",
-      "position": "Midfielder",
-      "age": 32,
-      "nationality": "Serbia"
-    },
-    {
-      "player_id": 903,
-      "player_name": "S. McTominay",
-      "position": "Midfielder",
-      "age": 24,
-      "nationality": "Scotland"
-    },
-    {
-      "player_id": 909,
-      "player_name": "M. Rashford",
-      "position": "Attacker",
-      "age": 23,
-      "nationality": "England"
-    },
-    {
-      "player_id": 12753,
-      "player_name": "M. Fellaini",
-      "position": "Midfielder",
-      "age": 33,
-      "nationality": "Belgium"
-    },
-    {
-      "player_id": 44873,
-      "player_name": "Demetri Mitchell",
-      "position": "Defender",
-      "age": 23,
-      "nationality": "England"
-    },
-    {
-      "player_id": 882,
-      "player_name": "David de Gea Quintana",
-      "position": "Goalkeeper",
-      "age": 30,
-      "nationality": "Spain"
-    },
-    {
-      "player_id": 907,
-      "player_name": "Romelu Lukaku Menama",
-      "position": "Attacker",
-      "age": 27,
-      "nationality": "Belgium"
     }
 ]
 }
