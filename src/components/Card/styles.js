@@ -5,13 +5,13 @@ import { Card } from 'antd';
 
 export const Container = styled(Card)`
   ${({ theme }) => css`
-    border-radius: ${theme.border.radius};
+    border-radius: ${theme.border.radius.medium};
     box-shadow: rgba(0, 0, 0, 0.04) 0px 0.4px 2px;
     display: flex;
     flex-direction: column;
 
     .ant-card-body {
-      padding: ${theme.spacings.small} 0px;
+      padding: ${theme.spacings.small} 0;
     }
   `}
 `;

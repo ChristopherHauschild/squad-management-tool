@@ -5,13 +5,13 @@ import Conditional from 'components/Conditional';
 
 import { Container, Header, Content } from './styles';
 
-const Card = ({ title, button, children }) => {
+const Card = ({ title, extraContent, children }) => {
   return (
     <Container>
       <Header>
         <h1>{title}</h1>
 
-        <Conditional when={button}>{button}</Conditional>
+        <Conditional when={extraContent}>{extraContent}</Conditional>
       </Header>
 
       <Content>{children}</Content>
@@ -21,11 +21,11 @@ const Card = ({ title, button, children }) => {
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
-  button: PropTypes.node,
+  extraContent: PropTypes.node,
 };
 
 Card.defaultProps = {
-  button: null,
+  extraContent: null,
 };
 
 export default Card;

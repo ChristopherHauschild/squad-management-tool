@@ -5,7 +5,7 @@ import { Card } from 'antd';
 
 export const Container = styled(Card)`
   ${({ theme }) => css`
-    border-radius: ${theme.border.radius};
+    border-radius: ${theme.border.radius.medium};
     background: ${theme.custom.gradientBg};
 
     min-height: 250px;
@@ -16,16 +16,16 @@ export const Container = styled(Card)`
 export const MiddleLine = styled.div`
   ${({ theme }) => css`
     border: 1px solid ${theme.colors.translucidGray};
-    height: 100%;
-    left: 50%;
+    height: ${(props) => (props.customHorizontal ? 'none' : '100%')};
+    left: ${(props) => (props.customHorizontal ? '50%' : '0%')};
     position: absolute;
-    top: 0%;
+    top: ${(props) => (props.customHorizontal ? '50%' : '0%')};
     transform: translateX(-50%);
+    width: ${(props) => (props.customHorizontal ? '100%' : 'auto')};
 
     ${media.lessThan('991px')`
-      height: 0px;
+      height: none;
       top: 50%;
-      transform: translateX(-50%);
       width: 100%;
     `}
   `}

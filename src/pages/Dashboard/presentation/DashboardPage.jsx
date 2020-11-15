@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { FaPlus as PlusIcon } from 'react-icons/fa';
 import { Col, Row } from 'antd';
 
+import Card from 'components/Card';
+import Button from 'components/Button';
 import MyTeams from 'components/MyTeams';
-import Top5 from 'components/Top5';
+import TopFive from 'components/TopFive';
 import HighlightsPlayers from 'components/HighlightsPlayers';
 
 const DashboardPage = ({ myTeams, loadingMyTeams }) => {
+  const addButton = useMemo(
+    () => (
+      <Button onClick={() => '!'}>
+        <PlusIcon />
+      </Button>
+    ),
+    []
+  );
+
   return (
     <Row gutter={[40, 24]}>
       <Col xs={24} sm={24} md={12}>
-        <MyTeams data={myTeams} loading={loadingMyTeams} />
+        <Card title="My teams" extraContent={addButton}>
+          <MyTeams data={myTeams} loading={loadingMyTeams} />
+        </Card>
       </Col>
+
       <Col xs={24} sm={24} md={12}>
         <Row gutter={[0, 24]}>
           <Col span={24}>
-            <Top5 />
+            <Card title="Top 5">
+              <TopFive />
+            </Card>
           </Col>
+
           <Col span={24}>
             <HighlightsPlayers />
           </Col>
