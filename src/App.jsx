@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 
 import '../node_modules/antd/dist/antd.css';
 
+import AppProvider from 'hooks';
+
 import theme from 'styles/theme';
 import GlobalStyle from 'styles/global';
 
@@ -12,10 +14,12 @@ import Routes from './routes';
 const App = () => {
   return (
     <Router>
-      <ThemeProvider theme={theme}>
-        <Routes />
-        <GlobalStyle />
-      </ThemeProvider>
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <Routes />
+          <GlobalStyle />
+        </ThemeProvider>
+      </AppProvider>
     </Router>
   );
 };

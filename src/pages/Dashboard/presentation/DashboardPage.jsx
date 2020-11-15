@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FaPlus as PlusIcon } from 'react-icons/fa';
 import { Col, Row } from 'antd';
+import { FaPlus as PlusIcon } from 'react-icons/fa';
 
 import Card from 'components/Card';
 import Button from 'components/Button';
@@ -10,13 +11,15 @@ import TopFive from 'components/TopFive';
 import HighlightsPlayers from 'components/HighlightsPlayers';
 
 const DashboardPage = ({ myTeams, loadingMyTeams }) => {
+  const history = useHistory();
+
   const addButton = useMemo(
     () => (
-      <Button onClick={() => '!'}>
+      <Button onClick={() => history.push('/management-team')}>
         <PlusIcon />
       </Button>
     ),
-    []
+    [history]
   );
 
   return (
