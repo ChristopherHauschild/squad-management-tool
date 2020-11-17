@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "dev:server": "json-server --watch server.json -p 3333"
   },
@@ -61,6 +61,9 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "jest": "^26.6.3",
+    "jest-styled-components": "^7.0.3",
+    "jest-transform-stub": "^2.0.0",
     "prettier": "^2.0.5"
   }
 }
