@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 
 import User from 'components/User';
 import logoImg from 'assets/images/logo.svg';
 
-import { Link } from 'react-router-dom';
 import { Container, HeaderContent, Logo, Title, UserDropdown, UserIcon } from './styles';
 
 const Header = () => {

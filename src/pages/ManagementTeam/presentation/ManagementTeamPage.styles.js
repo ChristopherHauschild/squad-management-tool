@@ -76,3 +76,13 @@ export const SearchPlayers = styled.div`
     }
   `}
 `;
+
+export const LoadingContainer = styled.div`
+  ${({ theme }) => css`
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    padding: ${theme.spacings.xxlarge} 0px;
+  `}
+`;

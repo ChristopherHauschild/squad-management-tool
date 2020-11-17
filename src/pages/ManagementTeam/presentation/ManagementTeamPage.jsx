@@ -1,154 +1,213 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-
+import { useQueryParams, StringParam } from 'use-query-params';
 import { Form, Input, Row, Col, Radio, Select } from 'antd';
 
 import { useTeams } from 'hooks/teams';
 
 import Card from 'components/Card';
-import TeamSquad from 'components/TeamSquad';
+import TeamFormation from 'components/TeamFormation';
 import SoccerField from 'components/SoccerField';
 import Button from 'components/Button';
-import Player from 'components/Player';
+import PlayerDrag from 'components/PlayerDrag';
 
-import Conditional from 'components/Conditional';
 import Loading from 'components/Loading';
+import Conditional from 'components/Conditional';
 
-import { Container, Column, SearchPlayers } from './ManagementTeamPage.styles';
+import {
+  Container,
+  Column,
+  SearchPlayers,
+  LoadingContainer,
+} from './ManagementTeamPage.styles';
 
 const { TextArea } = Input;
 const { Option } = Select;
 
-const ManagementTeamPage = ({ players, loadingPlayers, search, onSearchChange }) => {
+const ManagementTeamPage = ({
+  players,
+  loadingPlayers,
+  search,
+  onSearch,
+  fetchTeam,
+  team,
+  loadingTeam,
+}) => {
   const [form] = Form.useForm();
-  const { createTeam } = useTeams();
 
-  const handleChangeSearch = useCallback(
+  const { createTeam, updateTeam } = useTeams();
+  const [query] = useQueryParams({ id: StringParam });
+
+  const [selectedFormation, setSelectedFormation] = useState(undefined);
+
+  const editingMode = useMemo(() => {
+    if (query?.id) return true;
+
+    return false;
+  }, [query]);
+
+  const handleSearch = useCallback(
     _.debounce((event) => {
-      onSearchChange(event.target.value);
+      onSearch(event.target.value);
     }, 500),
     []
   );
 
+  const handleSelect = useCallback((value) => {
+    setSelectedFormation(value);
+  }, []);
+
+  const loadData = useCallback(
+    async (id) => {
+      await fetchTeam(id);
+    },
+    [fetchTeam]
+  );
+
   const onSubmit = useCallback(
     (payload) => {
-      createTeam(payload);
+      if (editingMode) {
+        updateTeam(query?.id, payload);
+      } else {
+        createTeam(payload);
+      }
     },
-    [createTeam]
+    [createTeam, updateTeam, query, editingMode]
   );
+
+  const initialValues = useMemo(() => {
+    return { ...team, formation: team?.formation || '3-4-3' };
+  }, [team]);
+
+  useEffect(() => {
+    if (!query?.id) return;
+
+    loadData(query?.id);
+  }, [loadData, query]);
 
   return (
     <Row>
       <Col span={24}>
-        <Card title="Create team">
-          <Container>
-            <Form
-              form={form}
-              layout="vertical"
-              validateTrigger="finish"
-              onFinish={onSubmit}
-            >
-              <h3>TEAM INFORMATION</h3>
+        <Card title={editingMode ? 'Edit team' : 'Create team'}>
+          <Conditional when={editingMode && loadingTeam}>
+            <LoadingContainer>
+              <Loading description="Loading team data" />
+            </LoadingContainer>
+          </Conditional>
 
-              <Row gutter={64}>
-                <Column xs={24} sm={24} md={12}>
-                  <Form.Item
-                    name="name"
-                    label="Team name"
-                    rules={[
-                      { required: true, message: 'Please enter a name for the team.' },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name="description" label="Description">
-                    <TextArea rows={8} />
-                  </Form.Item>
-                </Column>
+          <Conditional when={!editingMode || (editingMode && !loadingTeam && team)}>
+            <Container>
+              <Form
+                form={form}
+                layout="vertical"
+                validateTrigger="finish"
+                onFinish={onSubmit}
+                initialValues={initialValues}
+              >
+                <h3>TEAM INFORMATION</h3>
 
-                <Column xs={24} sm={24} md={12}>
-                  <Form.Item
-                    name="website"
-                    label="Team website"
-                    rules={[{ type: 'url', message: 'Please enter a valid url.' }]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name="type" label="Team Type">
-                    <Radio.Group>
-                      <Radio value="real">Real</Radio>
-                      <Radio value="fantasy">Fantasy</Radio>
-                    </Radio.Group>
-                  </Form.Item>
-                  <Form.Item name="tags" label="Tags">
-                    <Select mode="tags" dropdownStyle={{ display: 'none' }} />
-                  </Form.Item>
-                </Column>
-              </Row>
+                <Row gutter={64}>
+                  <Column xs={24} sm={24} md={12}>
+                    <Form.Item
+                      name="name"
+                      label="Team name"
+                      rules={[
+                        { required: true, message: 'Please enter a name for the team.' },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <Form.Item name="description" label="Description">
+                      <TextArea rows={8} />
+                    </Form.Item>
+                  </Column>
 
-              <h3>CONFIGURE SQUAD</h3>
+                  <Column xs={24} sm={24} md={12}>
+                    <Form.Item
+                      name="website"
+                      label="Team website"
+                      rules={[{ type: 'url', message: 'Please enter a valid url.' }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <Form.Item name="type" label="Team Type">
+                      <Radio.Group>
+                        <Radio value="real">Real</Radio>
+                        <Radio value="fantasy">Fantasy</Radio>
+                      </Radio.Group>
+                    </Form.Item>
+                    <Form.Item name="tags" label="Tags">
+                      <Select mode="tags" dropdownStyle={{ display: 'none' }} />
+                    </Form.Item>
+                  </Column>
+                </Row>
 
-              <Row gutter={64}>
-                <Column xs={24} sm={24} md={24} lg={12}>
-                  <Form.Item className="inline-form" name="formation" label="Formation">
-                    <Select defaultValue="3-4-3">
-                      <Option value="3-4-3">3-4-3</Option>
-                      <Option value="3-2-2-3">3-2-2-3</Option>
-                      <Option value="3-5-2">3-5-2</Option>
-                      <Option value="4-2-3-1">4-2-3-1</Option>
-                      <Option value="4-3-2-1">4-3-2-1</Option>
-                      <Option value="4-4-2">4-4-2</Option>
-                      <Option value="4-5-1">4-5-1</Option>
-                      <Option value="5-4-1">5-4-1</Option>
-                    </Select>
-                  </Form.Item>
+                <h3>CONFIGURE SQUAD</h3>
 
-                  <SoccerField customHorizontal>
-                    <TeamSquad />
-                  </SoccerField>
+                <Row gutter={64}>
+                  <Column xs={24} sm={24} md={24} lg={12}>
+                    <Form.Item className="inline-form" name="formation" label="Formation">
+                      <Select value={selectedFormation} onChange={handleSelect}>
+                        <Option value="3-4-3">3-4-3</Option>
+                        <Option value="3-2-2-3">3-2-2-3</Option>
+                        <Option value="3-5-2">3-5-2</Option>
+                        <Option value="4-2-3-1">4-2-3-1</Option>
+                        <Option value="4-3-2-1">4-3-2-1</Option>
+                        <Option value="4-4-2">4-4-2</Option>
+                        <Option value="4-5-1">4-5-1</Option>
+                        <Option value="5-4-1">5-4-1</Option>
+                      </Select>
+                    </Form.Item>
 
-                  <Button customClassName="save-btn">
-                    <strong>Save</strong>
-                  </Button>
-                </Column>
-
-                <Column xs={24} sm={24} md={24} lg={12}>
-                  <SearchPlayers>
-                    <label htmlFor="search">Search Players</label>
-                    <Input id="search" type="search" onChange={handleChangeSearch} />
-                  </SearchPlayers>
-
-                  <Conditional when={loadingPlayers}>
-                    <Loading description="Loading players" />
-                  </Conditional>
-
-                  <Conditional when={!loadingPlayers && players?.length > 0}>
-                    {players?.map((player) => (
-                      <Player
-                        key={player.id}
-                        name={player.name}
-                        nationality={player.nationality}
-                        age={player.age}
+                    <SoccerField customHorizontal>
+                      <TeamFormation
+                        formation={selectedFormation || form.getFieldValue('formation')}
                       />
-                    ))}
-                  </Conditional>
+                    </SoccerField>
 
-                  <Conditional when={!loadingPlayers && !players?.length > 0}>
-                    <div>
-                      <Conditional when={!search}>
-                        <span>No players available.</span>
-                      </Conditional>
-                      <Conditional when={search}>
-                        <span>{`No players with "${search}" found.`}</span>
-                      </Conditional>
-                    </div>
-                  </Conditional>
-                </Column>
-              </Row>
-            </Form>
-          </Container>
+                    <Button customClassName="save-btn">
+                      <strong>Save</strong>
+                    </Button>
+                  </Column>
+
+                  <Column xs={24} sm={24} md={24} lg={12}>
+                    <SearchPlayers>
+                      <label htmlFor="search">Search Players</label>
+                      <Input id="search" type="search" onChange={handleSearch} />
+                    </SearchPlayers>
+
+                    <Conditional when={loadingPlayers}>
+                      <Loading description="Loading players" />
+                    </Conditional>
+
+                    <Conditional when={!loadingPlayers && players?.length > 0}>
+                      {players?.map((player) => (
+                        <PlayerDrag
+                          key={player.id}
+                          name={player.name}
+                          nationality={player.nationality}
+                          age={player.age}
+                        />
+                      ))}
+                    </Conditional>
+
+                    <Conditional when={!loadingPlayers && !players?.length > 0}>
+                      <div>
+                        <Conditional when={!search}>
+                          <span>No players available.</span>
+                        </Conditional>
+                        <Conditional when={search}>
+                          <span>{`No players with "${search}" found.`}</span>
+                        </Conditional>
+                      </div>
+                    </Conditional>
+                  </Column>
+                </Row>
+              </Form>
+            </Container>
+          </Conditional>
         </Card>
       </Col>
     </Row>
@@ -159,7 +218,10 @@ ManagementTeamPage.propTypes = {
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingPlayers: PropTypes.bool.isRequired,
   search: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  fetchTeam: PropTypes.func.isRequired,
+  team: PropTypes.shape(PropTypes.any).isRequired,
+  loadingTeam: PropTypes.bool.isRequired,
 };
 
 export default ManagementTeamPage;

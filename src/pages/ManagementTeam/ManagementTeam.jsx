@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import api from 'services/api';
 
@@ -7,34 +7,52 @@ import Layout from 'components/Layout';
 import ManagementTeamPage from './presentation/ManagementTeamPage';
 
 const ManagementTeam = () => {
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState(undefined);
+  const [team, setTeam] = useState(undefined);
+
   const [search, setSearch] = useState('');
 
-  const [loading, setLoading] = useState(false);
+  const [loadingPlayers, setLoadingPlayers] = useState(false);
+  const [loadingTeam, setLoadingTeam] = useState(false);
 
-  const fetch = async () => {
+  const fetchPlayers = useCallback(async () => {
     try {
-      setLoading(true);
+      setLoadingPlayers(true);
       const response = await api.get(`/players?q=${search}`);
 
-      setLoading(false);
+      setLoadingPlayers(false);
       setPlayers(response.data);
     } catch (error) {
-      setLoading(false);
+      setLoadingPlayers(false);
     }
-  };
+  }, [search]);
+
+  const fetchTeam = useCallback(async (id) => {
+    try {
+      setLoadingTeam(true);
+      const response = await api.get(`/teams/${id}`);
+
+      setLoadingTeam(false);
+      setTeam(response.data);
+    } catch (error) {
+      setLoadingTeam(false);
+    }
+  }, []);
 
   useEffect(() => {
-    fetch();
-  }, [search]); // eslint-disable-line
+    fetchPlayers();
+  }, [fetchPlayers, search]);
 
   return (
     <Layout>
       <ManagementTeamPage
         players={players}
-        loadingPlayers={loading}
+        loadingPlayers={loadingPlayers}
         search={search}
-        onSearchChange={(value) => setSearch(value)}
+        onSearch={(value) => setSearch(value)}
+        fetchTeam={fetchTeam}
+        loadingTeam={loadingTeam}
+        team={team}
       />
     </Layout>
   );

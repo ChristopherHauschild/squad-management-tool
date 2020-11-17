@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaTrash as DeleteIcon, FaPen as EditIcon } from 'react-icons/fa';
 
 import { Table } from 'antd';
 
-const MyTeams = ({ data, loading }) => {
+import Conditional from 'components/Conditional';
+
+import { Description, Button, NoDescription } from './styles';
+
+const MyTeams = ({ data, loading, onButtonClick }) => {
   const columns = [
     {
       title: 'Name',
@@ -22,6 +27,26 @@ const MyTeams = ({ data, loading }) => {
       width: '60%',
       defaultSortOrder: 'descend',
       sorter: (a, b) => a.description > b.description,
+      render: (text, record) => (
+        <Description>
+          <Conditional when={text}>
+            <span>{text}</span>
+          </Conditional>
+
+          <Conditional when={!text}>
+            <NoDescription>No description provided</NoDescription>
+          </Conditional>
+
+          <div>
+            <Button type="button" onClick={() => onButtonClick('delete', record)}>
+              <DeleteIcon />
+            </Button>
+            <Button type="button" onClick={() => onButtonClick('edit', record)}>
+              <EditIcon />
+            </Button>
+          </div>
+        </Description>
+      ),
     },
   ];
 
@@ -38,6 +63,7 @@ const MyTeams = ({ data, loading }) => {
 MyTeams.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
 };
 
 export default MyTeams;
