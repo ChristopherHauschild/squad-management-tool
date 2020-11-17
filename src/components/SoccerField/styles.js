@@ -7,7 +7,6 @@ export const Container = styled(Card)`
   ${({ theme }) => css`
     border-radius: ${theme.border.radius.medium};
     background: ${theme.custom.gradientBg};
-
     min-height: 250px;
     position: relative;
   `}
