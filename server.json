@@ -1,0 +1,96 @@
+{
+  "players": [
+    {
+      "id": 893,
+      "name": "Luis Antonio Valencia Mosquera",
+      "position": "Midfielder",
+      "age": 35,
+      "nationality": "Ecuador"
+    },
+    {
+      "id": 895,
+      "name": "J. Garner",
+      "position": "Midfielder",
+      "age": 19,
+      "nationality": "England"
+    },
+    {
+      "id": 8522,
+      "name": "Joel Castro",
+      "position": "Goalkeeper",
+      "age": 24,
+      "nationality": "Portugal"
+    },
+    {
+      "id": 886,
+      "name": "Diogo Dalot",
+      "position": "Defender",
+      "age": 21,
+      "nationality": "Portugal"
+    },
+    {
+      "id": 892,
+      "name": "C. Smalling",
+      "position": "Defender",
+      "age": 31,
+      "nationality": "England"
+    },
+    {
+      "id": 654,
+      "name": "F. Pereira",
+      "position": "Defender",
+      "age": 31,
+      "nationality": "Brazil"
+    },
+    {
+      "id": 622,
+      "name": "C. Hernandez",
+      "position": "Attacker",
+      "age": 31,
+      "nationality": "Mexico"
+    },
+    {
+      "id": 894,
+      "name": "A. Young",
+      "position": "Defender",
+      "age": 35,
+      "nationality": "England"
+    },
+    {
+      "id": 899,
+      "name": "Andreas Pereira",
+      "position": "Midfielder",
+      "age": 24,
+      "nationality": "Brazil"
+    },
+    {
+      "id": 898,
+      "name": "Ander Herrera",
+      "position": "Midfielder",
+      "age": 31,
+      "nationality": "Spain"
+    },
+    {
+      "id": 883,
+      "name": "L. Grant",
+      "position": "Goalkeeper",
+      "age": 37,
+      "nationality": "England"
+    },
+    {
+      "id": 884,
+      "name": "S. Romero",
+      "position": "Goalkeeper",
+      "age": 33,
+      "nationality": "Argentina"
+    },
+    {
+      "id": 888,
+      "name": "P. Jones",
+      "position": "Defender",
+      "age": 28,
+      "nationality": "England"
+    }
+  ],
+  "teams": []
+}

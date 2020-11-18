@@ -33,14 +33,8 @@ module.exports = {
     'react/prop-types': [1, { ignore: ['children', 'formRef'] }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'jsx-a11y/label-has-for': [
-      'error',
-      {
-        required: {
-          some: ['nesting', 'id'],
-        },
-      },
-    ],
+    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   settings: {
     'import/resolver': {
