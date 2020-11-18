@@ -65,7 +65,7 @@ const theme = {
     headerMaxSize: 'calc(50px - 16px)',
     buttonPdd: '12px',
     gradientBg: 'linear-gradient(#B63A55, #913E81)',
-    plyrBg: 'linear-gradient(#FAFAFA, #ECECEC)',
+    playerBg: 'linear-gradient(#FAFAFA, #ECECEC)',
   },
 };
 

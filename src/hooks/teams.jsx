@@ -74,7 +74,7 @@ const useTeams = () => {
   const context = useContext(TeamsContext);
 
   if (!context) {
-    throw new Error('useTeam must be used within an TeamContext');
+    throw new Error('useTeams must be used within an TeamsContext');
   }
 
   return context;

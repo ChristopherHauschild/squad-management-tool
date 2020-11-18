@@ -23,7 +23,7 @@ Loading.propTypes = {
 };
 
 Loading.defaultProps = {
-  description: '',
+  description: undefined,
 };
 
 export default Loading;

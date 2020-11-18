@@ -30,7 +30,11 @@ const PlayerInfos = ({ data }) => {
 };
 
 PlayerInfos.propTypes = {
-  data: PropTypes.shape(PropTypes.any).isRequired,
+  data: PropTypes.shape(PropTypes.any),
+};
+
+PlayerInfos.defaultProps = {
+  data: {},
 };
 
 export default PlayerInfos;

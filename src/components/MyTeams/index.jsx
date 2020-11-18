@@ -29,7 +29,7 @@ const MyTeams = ({ data, loading, onButtonClick }) => {
       sorter: (a, b) => a.description > b.description,
       render: (text, record) => (
         <Description>
-          <Conditional when={text}>
+          <Conditional when={!!text}>
             <span>{text}</span>
           </Conditional>
 
@@ -61,9 +61,13 @@ const MyTeams = ({ data, loading, onButtonClick }) => {
 };
 
 MyTeams.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
+};
+
+MyTeams.defaultProps = {
+  data: [],
 };
 
 export default MyTeams;

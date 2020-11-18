@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Card = styled.div`
   ${({ theme }) => css`
     align-items: flex-start;
-    background: ${theme.custom.plyrBg};
+    background: ${theme.custom.playerBg};
     border-radius: ${theme.border.radius.small};
     display: flex;
     justify-content: space-between;

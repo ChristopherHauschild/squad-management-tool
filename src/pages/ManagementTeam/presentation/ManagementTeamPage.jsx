@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { useQueryParams, StringParam } from 'use-query-params';
-import { Form, Input, Row, Col, Radio, Select } from 'antd';
+import { Form, Input, Row, Col, Radio, Select, message } from 'antd';
 
 import { useTeams } from 'hooks/teams';
+import { useDroppedPlayers } from 'hooks/droppedPlayers';
 
 import Card from 'components/Card';
 import TeamFormation from 'components/TeamFormation';
@@ -37,8 +39,10 @@ const ManagementTeamPage = ({
 }) => {
   const [form] = Form.useForm();
 
-  const { createTeam, updateTeam } = useTeams();
   const [query] = useQueryParams({ id: StringParam });
+
+  const { createTeam, updateTeam } = useTeams();
+  const { droppedPlayers, resetDroppedPlayers } = useDroppedPlayers();
 
   const [selectedFormation, setSelectedFormation] = useState(undefined);
 
@@ -55,9 +59,13 @@ const ManagementTeamPage = ({
     []
   );
 
-  const handleSelect = useCallback((value) => {
-    setSelectedFormation(value);
-  }, []);
+  const handleSelect = useCallback(
+    (value) => {
+      resetDroppedPlayers();
+      setSelectedFormation(value);
+    },
+    [resetDroppedPlayers]
+  );
 
   const loadData = useCallback(
     async (id) => {
@@ -68,13 +76,20 @@ const ManagementTeamPage = ({
 
   const onSubmit = useCallback(
     (payload) => {
+      if (droppedPlayers?.length < 11) {
+        message.warning('Please inform all 11 players.');
+        return;
+      }
+
+      const formattedData = { ...payload, team_players: droppedPlayers };
+
       if (editingMode) {
-        updateTeam(query?.id, payload);
+        updateTeam(query?.id, formattedData);
       } else {
-        createTeam(payload);
+        createTeam(formattedData);
       }
     },
-    [createTeam, updateTeam, query, editingMode]
+    [createTeam, updateTeam, query, editingMode, droppedPlayers]
   );
 
   const initialValues = useMemo(() => {
@@ -97,12 +112,15 @@ const ManagementTeamPage = ({
             </LoadingContainer>
           </Conditional>
 
-          <Conditional when={!editingMode || (editingMode && !loadingTeam && team)}>
+          <Conditional
+            when={!editingMode || (editingMode && !loadingTeam && !_.isEmpty(team))}
+          >
             <Container>
               <Form
                 form={form}
                 layout="vertical"
                 validateTrigger="finish"
+                scrollToFirstError
                 onFinish={onSubmit}
                 initialValues={initialValues}
               >
@@ -132,7 +150,13 @@ const ManagementTeamPage = ({
                     >
                       <Input />
                     </Form.Item>
-                    <Form.Item name="type" label="Team Type">
+                    <Form.Item
+                      name="type"
+                      label="Team Type"
+                      rules={[
+                        { required: true, message: 'Please select the team type.' },
+                      ]}
+                    >
                       <Radio.Group>
                         <Radio value="real">Real</Radio>
                         <Radio value="fantasy">Fantasy</Radio>
@@ -163,7 +187,9 @@ const ManagementTeamPage = ({
 
                     <SoccerField customHorizontal>
                       <TeamFormation
-                        formation={selectedFormation || form.getFieldValue('formation')}
+                        formation={
+                          selectedFormation || form.getFieldValue('formation') || '3-4-3'
+                        }
                       />
                     </SoccerField>
 
@@ -175,7 +201,12 @@ const ManagementTeamPage = ({
                   <Column xs={24} sm={24} md={24} lg={12}>
                     <SearchPlayers>
                       <label htmlFor="search">Search Players</label>
-                      <Input id="search" type="search" onChange={handleSearch} />
+                      <Input
+                        id="search"
+                        type="search"
+                        onChange={handleSearch}
+                        onKeyDown={(e) => (e.keyCode === 13 ? e.preventDefault() : '')}
+                      />
                     </SearchPlayers>
 
                     <Conditional when={loadingPlayers}>
@@ -186,6 +217,7 @@ const ManagementTeamPage = ({
                       {players?.map((player) => (
                         <PlayerDrag
                           key={player.id}
+                          id={player.id}
                           name={player.name}
                           nationality={player.nationality}
                           age={player.age}
@@ -215,13 +247,18 @@ const ManagementTeamPage = ({
 };
 
 ManagementTeamPage.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
+  players: PropTypes.arrayOf(PropTypes.object),
   loadingPlayers: PropTypes.bool.isRequired,
   search: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
   fetchTeam: PropTypes.func.isRequired,
-  team: PropTypes.shape(PropTypes.any).isRequired,
+  team: PropTypes.shape(PropTypes.any),
   loadingTeam: PropTypes.bool.isRequired,
+};
+
+ManagementTeamPage.defaultProps = {
+  players: [],
+  team: {},
 };
 
 export default ManagementTeamPage;
