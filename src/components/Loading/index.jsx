@@ -11,7 +11,7 @@ const Loading = ({ description }) => {
     <Container>
       <Spin />
 
-      <Conditional when={description}>
+      <Conditional when={!!description}>
         <Description>{description}</Description>
       </Conditional>
     </Container>

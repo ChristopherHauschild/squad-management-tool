@@ -11,7 +11,7 @@ const Card = ({ title, extraContent, children }) => {
       <Header>
         <h1>{title}</h1>
 
-        <Conditional when={extraContent}>{extraContent}</Conditional>
+        <Conditional when={!!extraContent}>{extraContent}</Conditional>
       </Header>
 
       <Content>{children}</Content>
