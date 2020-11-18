@@ -20,6 +20,7 @@ const HighlightsPlayers = () => {
             </PlayerPercentage>
           </div>
         </Column>
+
         <Column xs={24} sm={24} md={24} lg={12}>
           <h2>Less picked player</h2>
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { DragSource, useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
+import { DragSource, useDrag } from 'react-dnd';
 
 import { collect } from 'App';
 
@@ -17,7 +17,7 @@ const PlayerDrag = (props) => {
   const { id, name, nationality, age } = props;
 
   const [, drag] = useDrag({
-    item: { id, type: 'plyr', player: props },
+    item: { id, type: 'player', player: props },
   });
 
   const { connectDragSource } = props;
@@ -44,10 +44,10 @@ const PlayerDrag = (props) => {
 };
 
 PlayerDrag.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  nationality: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  nationality: PropTypes.string,
+  age: PropTypes.number,
 };
 
-export default DragSource('plyr', playerSrc, collect)(PlayerDrag);
+export default DragSource('player', playerSrc, collect)(PlayerDrag);

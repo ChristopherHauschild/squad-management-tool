@@ -1,37 +1,64 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import Conditional from 'components/Conditional';
 
 import { Column, Container, List, ListItem, NoData } from './styles';
 
-const TopFive = () => {
+const TopFive = ({ highests, lowests }) => {
   return (
     <Container gutter={[16, 16]}>
       <Column xs={24} sm={24} md={12}>
-        <h2>Highest avg age</h2>
+        <h2>Highests avg age</h2>
         <List>
-          <ListItem>
-            <span>Inter Milan</span>
-            <strong>31.4</strong>
-          </ListItem>
-          <ListItem>
-            <span>Inter Milan</span>
-            <strong>31.4</strong>
-          </ListItem>
-          <ListItem>
-            <span>Inter Milan</span>
-            <strong>31.4</strong>
-          </ListItem>
+          <Conditional when={highests?.length > 0}>
+            {highests?.map((hg) => (
+              <ListItem key={hg.id} to={`/management-team?id=${hg.id}`}>
+                <span>{hg.name}</span>
+                <strong>{hg.avgAge}</strong>
+              </ListItem>
+            ))}
+          </Conditional>
+
+          <Conditional when={!highests?.length > 0}>
+            <NoData>
+              <span>No data available.</span>
+            </NoData>
+          </Conditional>
         </List>
       </Column>
+
       <Column xs={24} sm={24} md={12}>
-        <h2>Lowest avg age</h2>
+        <h2>Lowests avg age</h2>
         <List>
-          <NoData>
-            <span>No data available.</span>
-          </NoData>
+          <Conditional when={lowests?.length > 0}>
+            {lowests?.map((lw) => (
+              <ListItem key={lw.id} to={`/management-team?id=${lw.id}`}>
+                <span>{lw.name}</span>
+                <strong>{lw.avgAge}</strong>
+              </ListItem>
+            ))}
+          </Conditional>
+
+          <Conditional when={!lowests?.length > 0}>
+            <NoData>
+              <span>No data available.</span>
+            </NoData>
+          </Conditional>
         </List>
       </Column>
     </Container>
   );
+};
+
+TopFive.propTypes = {
+  highests: PropTypes.arrayOf(PropTypes.any),
+  lowests: PropTypes.arrayOf(PropTypes.any),
+};
+
+TopFive.defaultProps = {
+  highests: [],
+  lowests: [],
 };
 
 export default TopFive;

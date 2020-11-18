@@ -49,6 +49,10 @@ export default createGlobalStyle`
       white-space: normal;
     }
 
+    .ant-table-tbody > tr > td {
+      white-space: normal;
+    }
+
     .ant-form {
       align-items: center;
       display: flex;

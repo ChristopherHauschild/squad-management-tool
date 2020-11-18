@@ -11,19 +11,19 @@ import DashboardPage from './presentation/DashboardPage';
 const Dashboard = () => {
   const { success } = useTeams();
 
-  const [myTeams, setMyTeams] = useState([]);
-  const [loadingMyTeams, setLoadingMyTeams] = useState(false);
+  const [teams, setTeams] = useState([]);
+  const [loadingTeams, setLoadingTeams] = useState(false);
 
   const fetch = useCallback(async () => {
     try {
-      setLoadingMyTeams(true);
+      setLoadingTeams(true);
 
       const response = await api.get('/teams');
 
-      setLoadingMyTeams(false);
-      setMyTeams(response.data);
+      setLoadingTeams(false);
+      setTeams(response.data);
     } catch (error) {
-      setLoadingMyTeams(false);
+      setLoadingTeams(false);
     }
   }, []);
 
@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <DashboardPage myTeams={myTeams} loadingMyTeams={loadingMyTeams} />
+      <DashboardPage teams={teams} loadingTeams={loadingTeams} />
     </Layout>
   );
 };
