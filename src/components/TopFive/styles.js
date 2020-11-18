@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { Row, Col } from 'antd';
 
 export const Container = styled(Row)``;
@@ -28,7 +30,7 @@ export const List = styled.div`
   `}
 `;
 
-export const ListItem = styled.div`
+export const ListItem = styled(Link)`
   ${({ theme }) => css`
     align-items: center;
     background: #ffffff;
@@ -37,6 +39,15 @@ export const ListItem = styled.div`
     justify-content: space-between;
     padding: ${theme.spacings.xsmall};
     width: 100%;
+
+    span,
+    strong {
+      color: ${theme.colors.black};
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
 
     & + & {
       margin-top: ${theme.spacings.xxxsmall};
