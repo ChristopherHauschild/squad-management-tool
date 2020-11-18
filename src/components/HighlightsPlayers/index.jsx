@@ -1,14 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import SoccerField from '../SoccerField';
 
 import { Column, Container, NoData, PlayerAvatar, PlayerPercentage } from './styles';
 
 const HighlightsPlayers = () => {
+  const { t } = useTranslation();
+
   return (
     <SoccerField>
       <Container gutter={[16, 16]}>
         <Column xs={24} sm={24} md={24} lg={12}>
-          <h2>Most picked player</h2>
+          <h2>{t('components.highlightsPlayers.mostPicked')}</h2>
 
           <div>
             <PlayerAvatar>
@@ -21,11 +25,11 @@ const HighlightsPlayers = () => {
           </div>
         </Column>
         <Column xs={24} sm={24} md={24} lg={12}>
-          <h2>Less picked player</h2>
+          <h2>{t('components.highlightsPlayers.lessPicked')}</h2>
 
           <div>
             <NoData>
-              <span>No data available.</span>
+              <span>{t('components.emptyState')}</span>
             </NoData>
           </div>
         </Column>

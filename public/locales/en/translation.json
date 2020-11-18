@@ -20,8 +20,9 @@
     "emptyState": "No data available."
   },
   "pages": {
-    "createTeam": {
-      "title": "Create team",
+    "manageTeam": {
+      "titleCreate": "Create team",
+      "titleEdit": "Edit team",
       "form": {
         "information": {
           "title": "Team information",

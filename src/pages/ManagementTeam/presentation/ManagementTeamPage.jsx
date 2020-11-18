@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 import { useQueryParams, StringParam } from 'use-query-params';
 import { Form, Input, Row, Col, Radio, Select } from 'antd';
 
@@ -35,6 +36,8 @@ const ManagementTeamPage = ({
   team,
   loadingTeam,
 }) => {
+  const { t } = useTranslation();
+
   const [form] = Form.useForm();
 
   const { createTeam, updateTeam } = useTeams();
@@ -90,7 +93,13 @@ const ManagementTeamPage = ({
   return (
     <Row>
       <Col span={24}>
-        <Card title={editingMode ? 'Edit team' : 'Create team'}>
+        <Card
+          title={
+            editingMode
+              ? t('pages.manageTeam.titleEdit')
+              : t('pages.manageTeam.titleCreate')
+          }
+        >
           <Conditional when={editingMode && loadingTeam}>
             <LoadingContainer>
               <Loading description="Loading team data" />
@@ -106,20 +115,23 @@ const ManagementTeamPage = ({
                 onFinish={onSubmit}
                 initialValues={initialValues}
               >
-                <h3>TEAM INFORMATION</h3>
+                <h3>{t('pages.manageTeam.form.information.title')}</h3>
 
                 <Row gutter={64}>
                   <Column xs={24} sm={24} md={12}>
                     <Form.Item
                       name="name"
-                      label="Team name"
+                      label={t('pages.manageTeam.form.information.name')}
                       rules={[
                         { required: true, message: 'Please enter a name for the team.' },
                       ]}
                     >
                       <Input />
                     </Form.Item>
-                    <Form.Item name="description" label="Description">
+                    <Form.Item
+                      name="description"
+                      label={t('pages.manageTeam.form.information.description')}
+                    >
                       <TextArea rows={8} />
                     </Form.Item>
                   </Column>
@@ -127,28 +139,42 @@ const ManagementTeamPage = ({
                   <Column xs={24} sm={24} md={12}>
                     <Form.Item
                       name="website"
-                      label="Team website"
+                      label={t('pages.manageTeam.form.information.website')}
                       rules={[{ type: 'url', message: 'Please enter a valid url.' }]}
                     >
                       <Input />
                     </Form.Item>
-                    <Form.Item name="type" label="Team Type">
+                    <Form.Item
+                      name="type"
+                      label={t('pages.manageTeam.form.information.types.title')}
+                    >
                       <Radio.Group>
-                        <Radio value="real">Real</Radio>
-                        <Radio value="fantasy">Fantasy</Radio>
+                        <Radio value="real">
+                          {t('pages.manageTeam.form.information.types.real')}
+                        </Radio>
+                        <Radio value="fantasy">
+                          {t('pages.manageTeam.form.information.types.fantasy')}
+                        </Radio>
                       </Radio.Group>
                     </Form.Item>
-                    <Form.Item name="tags" label="Tags">
+                    <Form.Item
+                      name="tags"
+                      label={t('pages.manageTeam.form.information.tags')}
+                    >
                       <Select mode="tags" dropdownStyle={{ display: 'none' }} />
                     </Form.Item>
                   </Column>
                 </Row>
 
-                <h3>CONFIGURE SQUAD</h3>
+                <h3>{t('pages.manageTeam.form.configure.title')}</h3>
 
                 <Row gutter={64}>
                   <Column xs={24} sm={24} md={24} lg={12}>
-                    <Form.Item className="inline-form" name="formation" label="Formation">
+                    <Form.Item
+                      className="inline-form"
+                      name="formation"
+                      label={t('pages.manageTeam.form.configure.formation')}
+                    >
                       <Select value={selectedFormation} onChange={handleSelect}>
                         <Option value="3-4-3">3-4-3</Option>
                         <Option value="3-2-2-3">3-2-2-3</Option>
@@ -168,13 +194,15 @@ const ManagementTeamPage = ({
                     </SoccerField>
 
                     <Button customClassName="save-btn">
-                      <strong>Save</strong>
+                      <strong>{t('pages.manageTeam.form.configure.save')}</strong>
                     </Button>
                   </Column>
 
                   <Column xs={24} sm={24} md={24} lg={12}>
                     <SearchPlayers>
-                      <label htmlFor="search">Search Players</label>
+                      <label htmlFor="search">
+                        {t('pages.manageTeam.form.configure.players.search')}
+                      </label>
                       <Input id="search" type="search" onChange={handleSearch} />
                     </SearchPlayers>
 
@@ -196,7 +224,9 @@ const ManagementTeamPage = ({
                     <Conditional when={!loadingPlayers && !players?.length > 0}>
                       <div>
                         <Conditional when={!search}>
-                          <span>No players available.</span>
+                          <span>
+                            {t('pages.manageTeam.form.configure.players.emptyState')}
+                          </span>
                         </Conditional>
                         <Conditional when={search}>
                           <span>{`No players with "${search}" found.`}</span>
