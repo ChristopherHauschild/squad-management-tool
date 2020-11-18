@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { FaTrash as DeleteIcon, FaPen as EditIcon } from 'react-icons/fa';
 
 import { Table } from 'antd';
@@ -9,9 +10,11 @@ import Conditional from 'components/Conditional';
 import { Description, Button, NoDescription } from './styles';
 
 const MyTeams = ({ data, loading, onButtonClick }) => {
+  const { t } = useTranslation();
+
   const columns = [
     {
-      title: 'Name',
+      title: t('components.myTeams.columnName'),
       dataIndex: 'name',
       key: 'name',
       ellipsis: true,
@@ -20,7 +23,7 @@ const MyTeams = ({ data, loading, onButtonClick }) => {
       sorter: (a, b) => a.name > b.name,
     },
     {
-      title: 'Description',
+      title: t('components.myTeams.columnDescription'),
       dataIndex: 'description',
       key: 'description',
       ellipsis: true,
@@ -55,7 +58,7 @@ const MyTeams = ({ data, loading, onButtonClick }) => {
       dataSource={data}
       columns={columns}
       loading={loading}
-      locale={{ emptyText: 'No data available.' }}
+      locale={{ emptyText: t('components.emptyState') }}
     />
   );
 };

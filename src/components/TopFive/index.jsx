@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Conditional from 'components/Conditional';
 
@@ -9,7 +10,8 @@ const TopFive = ({ highests, lowests }) => {
   return (
     <Container gutter={[16, 16]}>
       <Column xs={24} sm={24} md={12}>
-        <h2>Highests avg age</h2>
+        <h2>{t('components.topFive.highest')}</h2>
+        
         <List>
           <Conditional when={highests?.length > 0}>
             {highests?.map((hg) => (
@@ -29,23 +31,24 @@ const TopFive = ({ highests, lowests }) => {
       </Column>
 
       <Column xs={24} sm={24} md={12}>
-        <h2>Lowests avg age</h2>
-        <List>
-          <Conditional when={lowests?.length > 0}>
-            {lowests?.map((lw) => (
-              <ListItem key={lw.id} to={`/management-team?id=${lw.id}`}>
-                <span>{lw.name}</span>
-                <strong>{lw.avgAge}</strong>
-              </ListItem>
-            ))}
-          </Conditional>
+         <h2>{t('components.topFive.lowest')}</h2>
+        
+         <List>
+           <Conditional when={lowests?.length > 0}>
+             {lowests?.map((lw) => (
+               <ListItem key={lw.id} to={`/management-team?id=${lw.id}`}>
+                 <span>{lw.name}</span>
+                 <strong>{lw.avgAge}</strong>
+               </ListItem>
+             ))}
+           </Conditional>
 
-          <Conditional when={!lowests?.length > 0}>
-            <NoData>
-              <span>No data available.</span>
-            </NoData>
-          </Conditional>
-        </List>
+           <Conditional when={!lowests?.length > 0}>
+             <NoData>
+               <span>{t('components.emptyState')}</span>
+             </NoData>
+           </Conditional>
+          </List>
       </Column>
     </Container>
   );

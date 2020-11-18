@@ -13,6 +13,7 @@ export const Container = styled.div`
         color: ${theme.colors.darkGray};
         font-size: ${theme.font.sizes.large};
         margin: ${theme.spacings.xxsmall} auto;
+        text-transform: uppercase;
       }
     }
   `}
