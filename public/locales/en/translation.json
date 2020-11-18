@@ -1,0 +1,50 @@
+{
+  "title": "Squad Management Tool",
+  "components": {
+    "footer": {
+      "copyright": "2020 - All rights reserved"
+    },
+    "highlightsPlayers": {
+      "mostPicked": "Most picked player",
+      "lessPicked": "Less picked player"
+    },
+    "topFive": {
+      "highest": "Highest avg age",
+      "lowest": "Lowest avg age"
+    },
+    "myTeams": {
+      "title": "My teams",
+      "columnName": "Name",
+      "columnDescription": "Description"
+    },
+    "emptyState": "No data available."
+  },
+  "pages": {
+    "createTeam": {
+      "title": "Create team",
+      "form": {
+        "information": {
+          "title": "Team information",
+          "name": "Team name",
+          "description": "Description",
+          "website": "Team website",
+          "types": {
+            "title": "Team type",
+            "real": "Real",
+            "fantasy": "Fantasy"
+          },
+          "tags": "Tags"
+        },
+        "configure": {
+          "title": "Configure squad",
+          "formation": "Formation",
+          "players": {
+            "search": "Search Players",
+            "emptyState": "No players available."
+          },
+          "save": "Save"
+        }
+      }
+    }
+  }
+}
