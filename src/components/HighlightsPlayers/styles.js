@@ -32,7 +32,7 @@ export const Column = styled(Col)`
 export const PlayerAvatar = styled.div`
   ${({ theme }) => css`
     align-items: center;
-    background: ${theme.colors.white};
+    background: ${theme.colors.discreetGray};
     border-radius: 50%;
     display: flex;
     flex-shrink: 0;

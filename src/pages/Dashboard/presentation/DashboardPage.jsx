@@ -5,6 +5,7 @@ import { Col, Row } from 'antd';
 import { FaPlus as PlusIcon } from 'react-icons/fa';
 
 import { getTeamAvgAge } from 'utils/getTeamAvg';
+import { getHighlightsPlayers } from 'utils/getHighlightsPlayers';
 
 import useDeleteTeamConfirmation from 'components/DeleteTeamConfirmation';
 
@@ -17,10 +18,13 @@ import HighlightsPlayers from 'components/HighlightsPlayers';
 const DashboardPage = ({ teams, loadingTeams }) => {
   const history = useHistory();
 
-  const [teamToDelete, setTeamToDelete] = useState(undefined);
+  const [teamToDelete, setTeamToDelete] = useState({});
 
   const [highestAvgTeams, setHighestAvgTeams] = useState([]);
   const [lowestAvgTeams, setLowestAvgTeams] = useState([]);
+
+  const [mostPickedPlayer, setMostPickedPlayer] = useState({});
+  const [leastPickedPlayer, setLeastPickedPlayer] = useState({});
 
   const { openModal, DeleteTeamConfirmationModal } = useDeleteTeamConfirmation({
     data: teamToDelete,
@@ -71,8 +75,49 @@ const DashboardPage = ({ teams, loadingTeams }) => {
     setLowestAvgTeams(lowests.map(currTeamAvg));
   }, [teams]);
 
+  const renderHighlightsPlayers = useCallback(() => {
+    const { players, playersId, mostPicked, leastPicked } = getHighlightsPlayers(teams);
+
+    const mostPickedResults = playersId.filter((curPlayer) => curPlayer === mostPicked)
+      .length;
+    const leastPickedResults = playersId.filter((curPlayer) => curPlayer === leastPicked)
+      .length;
+
+    const mostPickedRating = Math.floor(100 / (teams.length / mostPickedResults));
+    const leastPickedRating = Math.floor(100 / (teams.length / leastPickedResults));
+
+    const mostPickedPlayerData = players.find(
+      (curPlayer) => curPlayer.id.toString() === mostPicked.toString()
+    );
+    const leastPickedPlayerData = players.find(
+      (curPlayer) => curPlayer.id.toString() === leastPicked.toString()
+    );
+
+    let formattedMostPickedPlayer = {};
+    let formattedLeastPickedPlayer = {};
+
+    if (!Number.isNaN(mostPickedRating)) {
+      formattedMostPickedPlayer = { ...mostPickedPlayerData, rating: mostPickedRating };
+    } else {
+      formattedMostPickedPlayer = { ...mostPickedPlayerData };
+    }
+
+    if (!Number.isNaN(leastPickedRating)) {
+      formattedLeastPickedPlayer = {
+        ...leastPickedPlayerData,
+        rating: leastPickedRating,
+      };
+    } else {
+      formattedLeastPickedPlayer = { ...leastPickedPlayerData };
+    }
+
+    setMostPickedPlayer(formattedMostPickedPlayer);
+    setLeastPickedPlayer(formattedLeastPickedPlayer);
+  }, [teams]);
+
   useEffect(() => {
     renderTeamAvg();
+    renderHighlightsPlayers();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teams]);
@@ -91,12 +136,20 @@ const DashboardPage = ({ teams, loadingTeams }) => {
         <Row gutter={[0, 24]}>
           <Col span={24}>
             <Card title="Top 5">
-              <TopFive highests={highestAvgTeams} lowests={lowestAvgTeams} />
+              <TopFive
+                highests={highestAvgTeams}
+                lowests={lowestAvgTeams}
+                loading={loadingTeams}
+              />
             </Card>
           </Col>
 
           <Col span={24}>
-            <HighlightsPlayers />
+            <HighlightsPlayers
+              mostPicked={mostPickedPlayer}
+              leastPicked={leastPickedPlayer}
+              loading={loadingTeams}
+            />
           </Col>
         </Row>
       </Col>
