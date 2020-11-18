@@ -6,7 +6,7 @@ import { Container, MiddleCircle, MiddleLine } from './styles';
 const SoccerField = ({ customHorizontal, children }) => {
   return (
     <Container>
-      <MiddleLine customHorizontal={customHorizontal} />
+      <MiddleLine customHorizontal={customHorizontal} data-testid="midline" />
       <MiddleCircle />
 
       {children}

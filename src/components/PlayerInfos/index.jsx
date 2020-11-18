@@ -9,13 +9,13 @@ const PlayerInfos = ({ data }) => {
     () => (
       <>
         <div>
-          <strong>Name: </strong> <span>{data?.name}</span>
+          <strong>Name: </strong> <span>{data.name}</span>
         </div>
         <div>
-          <strong>Nationality: </strong> <span>{data?.nationality}</span>
+          <strong>Nationality: </strong> <span>{data.nationality}</span>
         </div>
         <div>
-          <strong>Age: </strong> <span>{data?.age}</span>
+          <strong>Age: </strong> <span>{data.age}</span>
         </div>
       </>
     ),
@@ -24,7 +24,7 @@ const PlayerInfos = ({ data }) => {
 
   return (
     <TooltipInfo placement="top" title={playerInfos}>
-      <strong>{getInitials(data?.name)}</strong>
+      <strong>{getInitials(data.name)}</strong>
     </TooltipInfo>
   );
 };

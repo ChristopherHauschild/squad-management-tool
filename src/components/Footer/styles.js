@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.footer`
   ${({ theme }) => css`
     align-items: center;
     background: ${theme.colors.gray};
